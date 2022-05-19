@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +45,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
         }
 
         public DependencyTreeNode<K, V> GetNode(K key) => _elements[key];
+        IDependencyTreeNode<K, V> IDependencyNodes<K, V>.GetNode(K key) => GetNode(key);
         IDependencyTreeNode<K, V> IDependencyTreeBranch<K, V>.GetNode(K key) => GetNode(key);
 
         public void RemoveNode(DependencyTreeNode<K, V> n)

@@ -153,5 +153,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
                     yield return el;
             }
         }
+
+        public IDependencyTreeNode<K, V> GetNode(K key) => _idMap.GetMapNode(key).GetTreeNode(this);
     }
 }
