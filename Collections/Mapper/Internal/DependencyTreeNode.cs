@@ -8,7 +8,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
 {
     internal class DependencyTreeNode<K, V> : IDependencyTreeNode<K, V> where V : class
     {
-        internal DependencyTreeNode(K? parentId)
+        internal DependencyTreeNode(K/*?*/ parentId)
         {
             ParentId = parentId;
         }
@@ -20,7 +20,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
             Branch = null;
         }
 
-        public K? ParentId { get; set; }
+        public K/*?*/ ParentId { get; set; }
         public DependencyMapNode<K, V> MapNode { get; set; }
         public DependencyTreeBranch<K, V> Branch { get; set; }
         K IDependencyTreeNode<K, V>.Id => MapNode.Id;

@@ -9,7 +9,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
 {
     internal class DependencyTreeBranch<K, V> : IDependencyTreeBranch<K, V> where V : class
     {
-        private K? _parent;
+        private K/*?*/ _parent;
         private Dictionary<K, DependencyTreeNode<K, V>> _elements;
 
         IEnumerable<K> IReadOnlyDictionary<K, IDependencyTreeNode<K, V>>.Keys => _elements.Keys;
@@ -38,7 +38,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
 
         IEnumerator IEnumerable.GetEnumerator() => new TreeEnumerator(this);
 
-        internal DependencyTreeBranch(K? parent)
+        internal DependencyTreeBranch(K/*?*/ parent)
         {
             _parent = parent;
             _elements = new Dictionary<K, DependencyTreeNode<K, V>>();

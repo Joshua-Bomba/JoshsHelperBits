@@ -62,7 +62,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
                 FragmentBranch(node);
                 return;
             }
-            DependencyTreeNode<K, V>? parentNode = _idMap.GetMapNode(node.ParentId)?.GetTreeNode(this);
+            DependencyTreeNode<K, V>/*?*/ parentNode = _idMap.GetMapNode(node.ParentId)?.GetTreeNode(this);
 
             if(parentNode != null)
             {
@@ -89,7 +89,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
                 return;
             }
             //We did change the logic here a bit so I don't think a simple copy paste job will sufice
-            DependencyTreeNode<K, V>? parentNode = _idMap.GetMapNode(node.ParentId)?.GetTreeNode(this);
+            DependencyTreeNode<K, V>/*?*/ parentNode = _idMap.GetMapNode(node.ParentId)?.GetTreeNode(this);
                 
 
             if (parentNode != null)

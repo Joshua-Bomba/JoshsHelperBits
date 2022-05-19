@@ -11,7 +11,7 @@ namespace JoshsHelperBits.Collections.Mapper
         K Id { get; }
         V Value { get;}
 
-        K? ParentId { get; }
+        K/*?*/ ParentId { get; }
 
         IDependencyTreeBranch<K,V> Branch { get; }
 

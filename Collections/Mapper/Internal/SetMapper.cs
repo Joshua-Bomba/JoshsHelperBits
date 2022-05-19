@@ -21,7 +21,9 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
 
         internal SetMapper(IEnumerable<V> initalElements)
         {
-            _allElements = initalElements.ToHashSet();
+
+            //_allElements = initalElements.ToHashSet();
+            _allElements = new HashSet<V>(initalElements);
             _conditions = new List<ISetHandlers<V>>();
         }
 
