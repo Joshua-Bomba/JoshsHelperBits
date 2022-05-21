@@ -1,7 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+	<Version>0.0.2</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>False</SignAssembly>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <Description>A package of data structure and other reusable bits that I add from time to time.
+no guarantees on the things in here. I don't validate everything I just throw stuff in here and do whatever
+there is some stuff that needs fixes and some works in progress. I have some unit test for some things
+I'll update things from time to time so the reference might change. 
+I kinda just do whatever. this is more me mosly so I don't have to copy paste these things into diffrent projects
+and I'll probably mostly use this with a Git SubModule
+I recommend you checkout the GitHub. 
+</Description>
+    <PackageProjectUrl>https://github.com/Joshua-Bomba/JoshsHelperBits</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Joshua-Bomba/JoshsHelperBits</RepositoryUrl>
+    <PackageReleaseNotes>Inital relase. copying pasting stuff I want to use for multiple projects from private repo into this Generic Library Repo and making it a Nuget Package.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
