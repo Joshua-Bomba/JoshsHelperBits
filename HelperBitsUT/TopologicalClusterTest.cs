@@ -11,29 +11,22 @@ using System.Threading.Tasks;
 namespace HelperBitsUT
 {
     [TestFixture]
-    public class TopologicalClusterTest : BaseTest
+    public class TopologicalClusterTest : BaseTest, IDepedencyTesterMethods
     {
-        private class TopologicalClusterAdapater : IDepedencyTesterMethods
+        private class TopologicalClusterInstanceAdapater<K, V> : IDependencySorter<K, V> where K : struct
         {
-            private class TopologicalClusterInstanceAdapater<K, V> : IDependencySorter<K, V> where K : struct
+            private TopologicalCluster<K, V> _cluster;
+            public TopologicalClusterInstanceAdapater(TopologicalCluster<K, V> c)
             {
-                private TopologicalCluster<K, V> _cluster;
-                public TopologicalClusterInstanceAdapater(TopologicalCluster<K, V> c)
-                {
-                    _cluster = c;
-                }
-                public void Add(V item) => _cluster.Add(item);
-
-                public IEnumerable<V> Data() => _cluster.Data();
-
-                public IEnumerator<V> GetEnumerator() => _cluster.GetEnumerator();
-
-                IEnumerator IEnumerable.GetEnumerator() => _cluster.GetEnumerator();
+                _cluster = c;
             }
+            public void Add(V item) => _cluster.Add(item);
 
+            public IEnumerable<V> Data() => _cluster.Data();
 
-            public IDependencySorter<KProp, TProp> GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2) where KProp : struct
-                => new TopologicalClusterInstanceAdapater<KProp, TProp>(new TopologicalCluster<KProp,TProp>(keySelector1,keySelector2));
+            public IEnumerator<V> GetEnumerator() => _cluster.GetEnumerator();
+
+            IEnumerator IEnumerable.GetEnumerator() => _cluster.GetEnumerator();
         }
 
         private DepedencyTester _dt; 
@@ -41,8 +34,11 @@ namespace HelperBitsUT
         [SetUp]
         public void Setup()
         {
-            _dt = new DepedencyTester(new TopologicalClusterAdapater());
+            _dt = new DepedencyTester(this);
         }
+
+        IDependencySorter<KProp, TProp> IDepedencyTesterMethods.GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2)
+            => new TopologicalClusterInstanceAdapater<KProp, TProp>(new TopologicalCluster<KProp, TProp>(keySelector1, keySelector2));
 
 
 
@@ -57,5 +53,6 @@ namespace HelperBitsUT
 
         [Test]
         public void ToplogicalClusterExtendedDepedencyTest() => _dt.DepExtendedTest();
+
     }
 }
