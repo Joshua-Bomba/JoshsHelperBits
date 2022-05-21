@@ -29,6 +29,9 @@ namespace HelperBitsUT
             IEnumerator IEnumerable.GetEnumerator() => _cluster.GetEnumerator();
         }
 
+        IDependencySorter<KProp, TProp> IDepedencyTesterMethods.GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2)
+            => new TopologicalClusterAdapater<KProp, TProp>(new TopologicalCluster<KProp, TProp>(keySelector1, keySelector2));
+
         private DepedencyTester _dt; 
 
         [SetUp]
@@ -37,18 +40,13 @@ namespace HelperBitsUT
             _dt = new DepedencyTester(this);
         }
 
-        IDependencySorter<KProp, TProp> IDepedencyTesterMethods.GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2)
-            => new TopologicalClusterAdapater<KProp, TProp>(new TopologicalCluster<KProp, TProp>(keySelector1, keySelector2));
-
-
-
         [Test]
         public void ToplogicalClusterTest() => _dt.BasicDepTest();
 
 
         [Ignore("Dual Dependency Sorting Does Not work properly at this time")]
         [Test]
-        public void TopologicalClusterDependecnyTest() => _dt.DualDependencyTest();
+        public void TopologicalClusterDependencyTest() => _dt.DualDependencyTest();
 
 
         [Test]
