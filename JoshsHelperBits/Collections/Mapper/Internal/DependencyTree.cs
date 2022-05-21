@@ -154,6 +154,20 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
             }
         }
 
+        public IEnumerable<V> GetChildItems()
+        {
+            foreach(IDependencyTreeNode<K,V> node in GetChildNodes())
+                yield return node.Value;
+        }
+
+        public IEnumerable<V> GetAllChildItems()
+        {
+            foreach (IDependencyTreeNode<K, V> node in GetAllChildNodes())
+                yield return node.Value;
+        }
+
         public IDependencyTreeNode<K, V> GetNode(K key) => _idMap.GetMapNode(key).GetTreeNode(this);
+
+
     }
 }
