@@ -103,6 +103,18 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
             return null;
         }
 
+        public IEnumerable<V> GetChildItems()
+        {
+            foreach (IDependencyTreeNode<K, V> n in GetChildNodes())
+                yield return n.Value;
+        }
+
+        public IEnumerable<V> GetAllChildItems()
+        {
+            foreach (IDependencyTreeNode<K, V> n in GetAllChildNodes())
+                yield return n.Value;
+        }
+
         public bool HasDependencies(K key) => _nodeMap[key].HasDependencies();
 
         public V GetItemByKey(K key) => _nodeMap[key].Value;

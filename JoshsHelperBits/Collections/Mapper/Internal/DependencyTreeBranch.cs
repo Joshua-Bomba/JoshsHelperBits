@@ -84,6 +84,18 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
 
         public IEnumerable<IDependencyTreeNode<K, V>> GetChildNodes() => _elements.Values;
 
+        public IEnumerable<V> GetChildItems()
+        {
+            foreach(IDependencyTreeNode<K, V> n in GetChildNodes())
+                yield return n.Value;
+        }
+
+        public IEnumerable<V> GetAllChildItems()
+        {
+            foreach (IDependencyTreeNode<K, V> n in GetAllChildNodes())
+                yield return n.Value;
+        }
+
         public bool Any() => _elements.Any();
 
         private class TreeEnumerator : IEnumerator<KeyValuePair<K, IDependencyTreeNode<K, V>>>
