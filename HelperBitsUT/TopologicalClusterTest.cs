@@ -13,7 +13,7 @@ namespace HelperBitsUT
     [TestFixture]
     public class TopologicalClusterTest : BaseTest, IDepedencyTesterMethods
     {
-        private class TopologicalClusterAdapater<K, V> : IDependencySorter<K, V> where K : struct
+        private class TopologicalClusterAdapater<K, V> : IDependencySorter<K, V> where K : struct where V : class
         {
             private TopologicalCluster<K, V> _cluster;
             public TopologicalClusterAdapater(TopologicalCluster<K, V> c)

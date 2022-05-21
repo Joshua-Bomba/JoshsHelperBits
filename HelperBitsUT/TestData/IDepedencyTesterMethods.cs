@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HelperBitsUT.TestData
 {
-    public interface IDependencySorter<K,V> : IEnumerable<V> where K : struct
+    public interface IDependencySorter<K,V> : IEnumerable<V> where K : struct where V : class
     {
         void Add(V item);
 
@@ -15,6 +15,6 @@ namespace HelperBitsUT.TestData
 
     public interface IDepedencyTesterMethods
     {
-        IDependencySorter<KProp, TProp> GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2) where KProp : struct;
+        IDependencySorter<KProp, TProp> GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2) where KProp : struct where TProp : class;
     }
 }
