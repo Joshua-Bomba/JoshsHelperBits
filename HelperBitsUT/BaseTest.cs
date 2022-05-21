@@ -4,15 +4,14 @@ namespace HelperBitsUT
 {
     public class BaseTest
     {
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void FullSetup()
         {
         }
-
-        [Test]
-        public void Test1()
+        [OneTimeTearDown]
+        public void FullTearDown()
         {
-            Assert.Pass();
+
         }
     }
 }
