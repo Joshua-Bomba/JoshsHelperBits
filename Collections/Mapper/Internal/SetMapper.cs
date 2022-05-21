@@ -44,7 +44,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
             if(item != null)
             {
                 _allElements.Add(item);
-                foreach(ISetHandlers<V> v in _allElements)
+                foreach(ISetHandlers<V> v in _conditions)
                     v.Add(item);
             }
             else
@@ -57,7 +57,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
         public void Clear()
         {
             _allElements.Clear();
-            foreach (ISetHandlers<V> v in _allElements)
+            foreach (ISetHandlers<V> v in _conditions)
                 v.Clear();
         } 
 
@@ -80,7 +80,7 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
             if (item != null)
             {
                 ret = _allElements.Remove(item);
-                foreach (ISetHandlers<V> v in _allElements)
+                foreach (ISetHandlers<V> v in _conditions)
                     v.Remove(item);
             }
             return ret;

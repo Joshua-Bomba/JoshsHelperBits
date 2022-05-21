@@ -11,5 +11,7 @@ namespace JoshsHelperBits.Collections.Mapper
         IEnumerable<IDependencyTreeNode<K, V>> GetChildNodes();
 
         IEnumerable<IDependencyTreeNode<K, V>> GetAllChildNodes();
+
+        IDependencyTreeNode<K, V> GetNode(K key);
     }
 }

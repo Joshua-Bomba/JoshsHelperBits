@@ -91,6 +91,18 @@ namespace JoshsHelperBits.Collections.Mapper.Internal
             return new IDependencyTreeNode<K, V>[0];
         }
 
+        IDependencyTreeNode<K, V> IDependencyNodes<K, V>.GetNode(K key)
+        {
+            //TODO: replace this with some merging code to handle both depedencies
+            //We are going to take the last one for now
+            DependencyTree<K, V> lastTree = _mappedDepedencies.LastOrDefault();
+            if (lastTree != null)
+            {
+                return lastTree.GetNode(key);
+            }
+            return null;
+        }
+
         public bool HasDependencies(K key) => _nodeMap[key].HasDependencies();
 
         public V GetItemByKey(K key) => _nodeMap[key].Value;
