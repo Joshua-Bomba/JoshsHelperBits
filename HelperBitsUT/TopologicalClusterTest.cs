@@ -13,10 +13,10 @@ namespace HelperBitsUT
     [TestFixture]
     public class TopologicalClusterTest : BaseTest, IDepedencyTesterMethods
     {
-        private class TopologicalClusterInstanceAdapater<K, V> : IDependencySorter<K, V> where K : struct
+        private class TopologicalClusterAdapater<K, V> : IDependencySorter<K, V> where K : struct
         {
             private TopologicalCluster<K, V> _cluster;
-            public TopologicalClusterInstanceAdapater(TopologicalCluster<K, V> c)
+            public TopologicalClusterAdapater(TopologicalCluster<K, V> c)
             {
                 _cluster = c;
             }
@@ -38,7 +38,7 @@ namespace HelperBitsUT
         }
 
         IDependencySorter<KProp, TProp> IDepedencyTesterMethods.GetDependencySorter<KProp, TProp>(Func<TProp, KProp?> keySelector1, Func<TProp, KProp?> keySelector2)
-            => new TopologicalClusterInstanceAdapater<KProp, TProp>(new TopologicalCluster<KProp, TProp>(keySelector1, keySelector2));
+            => new TopologicalClusterAdapater<KProp, TProp>(new TopologicalCluster<KProp, TProp>(keySelector1, keySelector2));
 
 
 
