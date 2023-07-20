@@ -12,7 +12,6 @@ namespace JoshsHelperBits.Collections
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
     public class DuplicatesDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable, ILookup<TKey, TValue>
-        where TKey : class
     {
         private Dictionary<TKey, IList<TValue>> _lookup;
         private IList<TValue> _null;
@@ -116,7 +115,7 @@ namespace JoshsHelperBits.Collections
             }
             if (_null != null)
             {
-                array[array.Length] = new KeyValuePair<TKey, TValue>(null, _null.First());
+                array[array.Length] = new KeyValuePair<TKey, TValue>(default, _null.First());
             }
         }
 
@@ -131,7 +130,7 @@ namespace JoshsHelperBits.Collections
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
             => _null != null ?
-            Concat(_lookup.Select(x => new KeyValuePair<TKey, TValue>(x.Key, x.Value.First())), new KeyValuePair<TKey, TValue>(null, _null.First())).GetEnumerator()
+            Concat(_lookup.Select(x => new KeyValuePair<TKey, TValue>(x.Key, x.Value.First())), new KeyValuePair<TKey, TValue>(default, _null.First())).GetEnumerator()
             : _lookup.Select(x => new KeyValuePair<TKey, TValue>(x.Key, x.Value.First())).GetEnumerator();
 
         public bool Remove(TKey key)
@@ -177,7 +176,7 @@ namespace JoshsHelperBits.Collections
             IEnumerable<KeyValuePair<TKey, IList<TValue>>> col;
             if (_null != null)
             {
-                col = Concat(_lookup, new KeyValuePair<TKey, IList<TValue>>(null, _null));
+                col = Concat(_lookup, new KeyValuePair<TKey, IList<TValue>>(default, _null));
             }
             else
             {
